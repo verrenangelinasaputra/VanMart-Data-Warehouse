@@ -1,0 +1,131 @@
+Nama 		: Verren Angelina Saputra
+Kode Aslab	: LC103
+
+- dimension, measurement, fact (dipake untuk analisa)
+	* dimension = suatu table yang sudah di ETL measurement, table master (msgoods)
+	* measurement = suatu logic aggregat buat analysis
+			jumlah penjualan semua sales, querynya pake aggregate. Nanti digabung ama si fact
+	* server = dipake buat analisa (terdiri dari dimension dan measurement)
+
+1. MEASUREMENT :
+- Total Sales Teransaction
+	- total sales earning = SUM (Quantity * MedicineSellingPrice)
+	- total medicine sold = SUM (Quantity)
+- Purchase Transaction
+	- Total purchase cost = SUM (Quantity * MedicineBuyingPrice)
+	- Total medicine purchased  = SUM (Quantity)
+- Subscription Transaction
+	- Total subscription earning = SUM (BenefitPrice)
+	- The number of subscriber = COUNT (Subscription ID)
+- Service Transaction
+	- total service earning = SUM (Quantity * TreatmentPrice)
+	- number of doctor = COUNT (Doctor ID)
+
+============================================================================
+
+
+2. DIMENSION :
+Medicine Dimension
+- MedicineCode
+- MedicineID			(business key)
+- MedicineName 			(fixed)
+- MedicineExpiredDate		(fixed)
+- MedicineSellingPrice		(historical)
+- MedicineBuyingPrice		(historical)
+- ValidTo			(fixed)
+- ValidFrom			(fixed)
+
+
+Doctor dimension 
+- DoctorCode					
+- DoctorID			(business key)		
+- DoctorName			(fixed)
+- DoctorDOB 			(fixed)
+- DoctorAddress			(changing)
+- DoctorSalary			(historical)
+- ValidTo			(fixed)
+- ValidFrom			(fixed)
+
+Staff dimension :
+- StaffCode			
+- StaffID			(business key)
+- StaffName			(fixed)
+- StaffDOB			(fixed)
+- StaffAddress			(changing)
+- StaffSalary			(historical)
+- ValidTo			(fixed)
+- ValidFrom			(fixed)
+
+customer dimension :
+- CustomerCode
+- CustomerID			(business key)
+- CustomerName			(fixed)
+- CustomerGender		(derived)
+- CustomerAddress		(changing)
+
+benefit dimension 
+- BenefitCode
+- BenefitID			(business key)
+- BenefitName			(fixed)
+- BenefitPrice			(historical)
+- ValidTo			(fixed)
+- Valid From			(fixed)
+
+treatment dimension 
+- TreatmentCode			
+- TreatmentID			(business key)
+- TreatmentName			(fixed)
+- TreatmentPrice		(historical)
+- ValidTo			(fixed)
+- ValidFrom			(fixed)
+
+distributor dimension
+- DistributorCode		
+- DistributorID			(business key)
+- DistributorName		(fixed)
+- DistributorAddress		(changing)
+- DistributorPhone		(changing)
+- CityName			(fixed)
+
+Time Dimension
+- TimeCode
+- Month
+- Quarter
+- Date
+- Year
+
+============================================================================
+
+
+3. FACT (Group Disini) -> bikin jadi CUBE (buat ditunjukkin di excel)
+SalesFact
+- TimeCode
+- MedicineCode
+- StaffCode
+- CustomerCode
+- total sales earning = SUM (Quantity * MedicineSellingPrice)
+- total medicine sold = SUM (Quantity)
+
+PurchaseFact
+- TimeCode
+- MedicineCode
+- StaffCode
+- DistributorCode
+- Total purchase cost = SUM (Quantity * MedicineBuyingPrice)
+- Total medicine purchased  = SUM (Quantity)
+
+SubscriptionTransactionFact
+- TimeCode
+- CustomerCode
+- StaffCode
+- BenefitCode
+- Total subscription earning = SUM (BenefitPrice)
+- The number of subscriber = COUNT (Subscription ID)
+
+ServiceTransactionFact
+- TimeCode
+- CustomerCode
+- TreatmentCode
+- DoctorCode
+- total service earning = SUM (Quantity * TreatmentPrice)
+- number of doctor = COUNT (Doctor ID)
