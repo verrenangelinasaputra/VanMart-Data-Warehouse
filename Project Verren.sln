@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Project Verren", "Project Verren\Project Verren.dtproj", "{D1AC5D17-6DA4-4030-85C2-D585EB65DDB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1AC5D17-6DA4-4030-85C2-D585EB65DDB3}.Development|Default.ActiveCfg = Development
+		{D1AC5D17-6DA4-4030-85C2-D585EB65DDB3}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB362E0C-DEAA-4A36-A50A-79D3120F68F9}
+	EndGlobalSection
+EndGlobal
